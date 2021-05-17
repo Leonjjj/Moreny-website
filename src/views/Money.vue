@@ -1,50 +1,16 @@
 <template>
-  <div class="nav-wrapper">
-    <div class="content">
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-      <p>Money.vue</p>
-    </div>
-    <hr />
-    <Nav />
+  <div>
+    <layout>
+      <p>Money</p>
+    </layout>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Layout from "@/components/Layout.vue";
 export default {
+  components: { Layout },
   name: "Money",
 };
 </script>
 
-<style lang="scss" scoped>
-.nav-wrapper {
-  border: 1px solid green;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-.content {
-  overflow: auto;
-  flex-grow: 1;
-}
-</style>
