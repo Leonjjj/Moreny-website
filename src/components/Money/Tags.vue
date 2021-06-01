@@ -1,4 +1,4 @@
-import Vue from 'vue';
+
 <template>
   <div class="tags">
     <div class="new">
@@ -6,7 +6,7 @@ import Vue from 'vue';
     </div>
     <ul class="current">
       <li
-        v-for="tag in dataSource"
+        v-for="tag in tagList"
         :key="tag.id"
         @click="toggle(tag)"
         :class="{ selected: selectedTag.indexOf(tag) >= 0 }"
@@ -19,12 +19,17 @@ import Vue from 'vue';
 
 <script lang="ts">
 import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
-@Component
-export default class Tages extends Vue {
-  @Prop() dataSource: string[] | undefined;
+import { Component } from "vue-property-decorator";
 
+@Component({})
+export default class Tages extends Vue {
   selectedTag: string[] = [];
+  get tagList() {
+    return this.$store.state.tagList;
+  }
+  created() {
+    this.$store.commit("fetchTags");
+  }
   toggle(tag: string) {
     const index = this.selectedTag.indexOf(tag);
     if (index >= 0) {
@@ -37,13 +42,10 @@ export default class Tages extends Vue {
 
   create() {
     const name = window.prompt("请输入标签名");
-    if (name === "") {
-      window.alert("标签不能为空");
-    } else {
-      if (this.dataSource) {
-        this.$emit("update:dataSource", [...this.dataSource, name]);
-      }
+    if (!name) {
+      return window.alert("标签名不能为空");
     }
+    this.$store.commit("createTag", name);
   }
 }
 </script>

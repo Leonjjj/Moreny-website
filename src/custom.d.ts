@@ -3,7 +3,7 @@ type RecordItem = {
     notes: string;
     type: string;
     amount: number;
-    createAt?: Date; // 类、构造函数 ?表示可以不存在
+    createdAt?: Date; // 类、构造函数 ?表示可以不存在
 };
 
 type Tag = {
