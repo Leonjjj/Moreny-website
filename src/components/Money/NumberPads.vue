@@ -13,7 +13,7 @@
       <button @click="inputContent">7</button>
       <button @click="inputContent">8</button>
       <button @click="inputContent">9</button>
-      <button @click="ok">OK</button>
+      <button @click="ok" class="ok">OK</button>
       <button @click="inputContent" class="zero">0</button>
       <button @click="inputContent">.</button>
     </div>
@@ -26,7 +26,7 @@ import { Component, Prop } from "vue-property-decorator";
 
 @Component
 export default class NumberPads extends Vue {
-  @Prop() readonly value!: number;
+  @Prop(Number) readonly value!: number;
 
   output = this.value.toString();
 
@@ -60,8 +60,9 @@ export default class NumberPads extends Vue {
   }
 
   ok() {
-    this.$emit("update:value", this.output);
-    this.$emit("submit", this.output);
+    const number = parseFloat(this.output);
+    this.$emit("update:value", number);
+    this.$emit("submit", number);
     this.output = "0";
   }
 }
