@@ -6,7 +6,7 @@
       <Notes
         fieldName="备注"
         placeholder="请在这里输入"
-        @update:value="onUpdateNotes"
+        :value.sync="record.notes"
       />
     </div>
 
@@ -51,7 +51,14 @@ export default class Money extends Vue {
   }
 
   saveRecord() {
+    if (!this.record.tags || this.record.tags.length === 0) {
+      return window.alert("清至少选择一个标签");
+    }
     this.$store.commit("createRecord", this.record);
+    if (this.$store.state.createRecordError === null) {
+      window.alert("以保存");
+      this.record.notes = "";
+    }
   }
 }
 </script>
